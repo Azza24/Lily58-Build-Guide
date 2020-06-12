@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Lily58 Build guide &mdash; Lily58 Build Guide  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Lily58 Build Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Lily58 Build guide</a><ul>
+<li><a class="reference internal" href="#assembling-the-board">Assembling the board</a><ul>
+<li><a class="reference internal" href="#soldering">Soldering</a><ul>
+<li><a class="reference internal" href="#diodes">1) Diodes</a></li>
+<li><a class="reference internal" href="#reset-switch-trrs-jack">2) Reset switch, TRRS jack</a></li>
+<li><a class="reference internal" href="#arduino">3) Arduino</a></li>
+<li><a class="reference internal" href="#switches">4) Switches</a></li>
+<li><a class="reference internal" href="#oled-display">5) OLED display</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assembling-the-case">Assembling the case</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#making-the-key-map">Making the key map</a></li>
+<li><a class="reference internal" href="#downloading-qmk-firmware">Downloading QMK firmware</a><ul>
+<li><a class="reference internal" href="#macos">MacOS</a><ul>
+<li><a class="reference internal" href="#install-homebrew">1) Install homebrew</a></li>
+<li><a class="reference internal" href="#install-your-dependencies">2) Install your dependencies</a></li>
+<li><a class="reference internal" href="#installing-qmk">3) Installing QMK</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#linux-arch">Linux (Arch)</a></li>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flashing-your-keyboard">Flashing your keyboard</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Lily58 Build Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Lily58 Build guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Buildguide.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lily58-build-guide">
+<h1>Lily58 Build guide<a class="headerlink" href="#lily58-build-guide" title="Permalink to this headline">¶</a></h1>
+<p>This build guide will take you trough the process of building your own lily58 keyboard from start to finish. Most steps don’t need to be done in the order described but I found this was the easiest way. You do obviously need to have the software and your key map before you flash your microcontroller.</p>
+<p><strong>Important notice: The two sides communicate through I2C. Unplugging the TRRS cable while powered on could cause damage to your micro controller. Always unplug USB first.</strong></p>
+<div class="section" id="assembling-the-board">
+<h2>Assembling the board<a class="headerlink" href="#assembling-the-board" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="soldering">
+<h3>Soldering<a class="headerlink" href="#soldering" title="Permalink to this headline">¶</a></h3>
+<p>The pcb’s we’re going to be soldering are identical. One needs to be flipped to make up the other side. Make sure you only solder on 1 side.</p>
+<div class="section" id="diodes">
+<h4>1) Diodes<a class="headerlink" href="#diodes" title="Permalink to this headline">¶</a></h4>
+<p>The general rule in soldering is <strong>small components first</strong>. In our case this means we start with the 58 diodes.
+A diode needs to be soldered on every -&gt;|- sign.
+The black part of your diode is the cathode and in our case should be facing up to the square pad.
+<em>insert image</em>
+As you can see in the image there are 4 pads for each diode. The two inner pads are used for smd diodes. We have trough hole diodes so we use the outer ones. Flip the pcb over after inserting the diode and solder the two legs.</p>
+</div>
+<div class="section" id="reset-switch-trrs-jack">
+<h4>2) Reset switch, TRRS jack<a class="headerlink" href="#reset-switch-trrs-jack" title="Permalink to this headline">¶</a></h4>
+<p>After soldering all the diodes, it’s time to solder the reset switch and the trrs jack. Insert them into place, flip the pcb over and solder the legs.</p>
+</div>
+<div class="section" id="arduino">
+<h4>3) Arduino<a class="headerlink" href="#arduino" title="Permalink to this headline">¶</a></h4>
+<p>For the arduino it’s very important that you solder it in the right place. Insert the long side of the headers(pins) into the box of the pcb. Place the arduino on top and solder all the pins to the pcb. Soldering with the arduino on makes sure you use the right pins and prevents crooked headers.</p>
+</div>
+<div class="section" id="switches">
+<h4>4) Switches<a class="headerlink" href="#switches" title="Permalink to this headline">¶</a></h4>
+<p>Soldering the switches is very straight forward. Just <strong>don’t forget the mounting plate</strong>
+Insert the switches through the mounting plate on to your pcb and solder on the other side.</p>
+</div>
+<div class="section" id="oled-display">
+<h4>5) OLED display<a class="headerlink" href="#oled-display" title="Permalink to this headline">¶</a></h4>
+<p>We solder the display last because it’s quite fragile and only soldered on one point. Insert the display through the 4 holes at the bottom of the Pro Micro. Solder on the other side. Keep the display straight while soldering. You can do this by inserting something between the mcu and the display or you can hold it in place by hand.</p>
+</div>
+</div>
+<div class="section" id="assembling-the-case">
+<h3>Assembling the case<a class="headerlink" href="#assembling-the-case" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="making-the-key-map">
+<h2>Making the key map<a class="headerlink" href="#making-the-key-map" title="Permalink to this headline">¶</a></h2>
+<p>I’ve already made a couple of key mappings that you can use. You can find them in the key mapping folder. These are meant as starting points to be edited in the link bellow but they can also be used as is.</p>
+<p>To completely start from scratch go to:
+<a class="reference external" href="https://config.qmk.fm/#/lily58/rev1/LAYOUT">https://config.qmk.fm/#/lily58/rev1/LAYOUT</a>
+Here you can drag and drop from the bottom board to a place on the top board to assign your value to your key. When you’re happy with your layout you can save your configuration to your computer by downloading the .JSON file. Then hit the compile button at the top of the page. After it is done compiling you can download the .hex file by pressing the now green firmware button.</p>
+</div>
+<div class="section" id="downloading-qmk-firmware">
+<h2>Downloading QMK firmware<a class="headerlink" href="#downloading-qmk-firmware" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="macos">
+<h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="install-homebrew">
+<h4>1) Install homebrew<a class="headerlink" href="#install-homebrew" title="Permalink to this headline">¶</a></h4>
+<p>To be able to run QMK, compile and flash your key map you need to install homebrew. To do that you need to run the following command by pasting it in your terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-your-dependencies">
+<h4>2) Install your dependencies<a class="headerlink" href="#install-your-dependencies" title="Permalink to this headline">¶</a></h4>
+<p>Now we have the installer installed we need to install the software to compile and flash the keyboards. The following commands need to be run one by one.
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">libusb</span></code>
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">tap</span> <span class="pre">osx-cross/avr</span></code>
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">tap</span> <span class="pre">PX4/homebrew-px4</span></code>
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">update</span></code>
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">avr-gcc</span></code> This one might take a while
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">dfu-programmer</span></code>
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">gcc-arm-none-aebi</span></code>
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">avr-dude</span></code></p>
+</div>
+<div class="section" id="installing-qmk">
+<h4>3) Installing QMK<a class="headerlink" href="#installing-qmk" title="Permalink to this headline">¶</a></h4>
+<p>Download the QMK firmware by clicking <a class="reference external" href="https://github.com/qmk/qmk_toolbox/releases">This link.</a> Scroll down to assets and download the QMK.Toolbox.app.zip
+Unzip the file and place it in your applications folder.</p>
+</div>
+</div>
+<div class="section" id="linux-arch">
+<h3>Linux (Arch)<a class="headerlink" href="#linux-arch" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="flashing-your-keyboard">
+<h2>Flashing your keyboard<a class="headerlink" href="#flashing-your-keyboard" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Jamrulezz1
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
