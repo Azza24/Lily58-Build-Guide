@@ -16,7 +16,7 @@
 
 
 # -- Project information -----------------------------------------------------
-
+master_doc = 'index'
 project = 'Lily58 Build Guide'
 copyright = '2020, Jamrulezz1'
 author = 'Jamrulezz1'
