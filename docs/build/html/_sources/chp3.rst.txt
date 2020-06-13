@@ -8,6 +8,8 @@ Flashing your keyboard
 The final step in completing your keyboard is to flash the software onto the keyboard.
 This step is different for every operating system.
 
+All the steps for using an elite-c will be in *italics*
+
 .. toctree::
         :maxdepth: 3
 

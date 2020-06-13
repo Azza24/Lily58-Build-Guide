@@ -20,3 +20,7 @@ Always unplug USB first.**
    chp1.rst
    chp2.rst
    chp3.rst
+
+This guide is not made by the original designer of this keyboard.
+For the original source files and a japanese build guide please visit  `github <https://github.com/kata0510/Lily58>`_
+
