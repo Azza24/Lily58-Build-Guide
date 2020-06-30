@@ -28,6 +28,10 @@ Insert them into the marked spot, flip the pcb over and solder the legs.
 
 Arduino
 *******
+Before we solder on the arduino we need to short the oled pins. These will end up bellow the arduino where we can't reach them anymore when the arduino is on.
+
+.. image:: ../images/oledpads.jpeg
+
 For the arduino it's very important that you solder it in the right place. 
 Insert the short side of the headers pins into the box marked the pcb. 
 Place the arduino on top with the usb port facing down to the pcb and solder all the pins to the pcb. 
