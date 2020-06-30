@@ -1,3 +1,4 @@
 Assembling your case
 ====================
-Some text here
+Assembling your case is very straight forward. Screw the large standoff onto the oled cover. Then attatch the oled cover to the pcb. 
+Put screws and standoffs trough all the holes in the bottom plate, put the standoffs trough the pcb and screw the plate in.

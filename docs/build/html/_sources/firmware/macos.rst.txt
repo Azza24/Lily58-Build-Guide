@@ -2,20 +2,20 @@ MacOS
 =====
 Downloading QMK firmware
 ########################
-You need several dependencies before you're able to run QMK toolbox.
+Because I had some errors using qmk toolbox I compiled the files myself. This may sound a bit dounting but it isn't that difficult.
+First we need to get the source code which can either be cloned or downloaded as a zip from the `github <https://github.com/qmk/qmk_firmware>`_. 
+If you decide to do this too you can skip the Installing QMK Toolbox part.
 
 Installing homebrew
 *******************
 If you already have homebrew installed you can skip this step.
 To install these dependencies you need to install homebrew. 
-To do this simply paste the following command in your terminal and press enter
-.. code-block::
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+To do this simply paste the following command in your terminal and press enter::
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 Installing your dependencies
 ****************************
-To install the dependencies paste the following lines into your terminal separated by an enter.
-.. code-block::
+To install the dependencies paste the following lines into your terminal separated by an enter::
         brew install libusb
         brew tap osx-cross/avr
         brew tap PX4/homebrew-px4
@@ -27,8 +27,8 @@ To install the dependencies paste the following lines into your terminal separat
 
 If you're curious what all these dependencies do, you can look them up on the home brew website.
 
-Installing QMK
-**************
+Installing QMK Toolbox
+**********************
 Finally we arrive on downloading the actual QMK firmware.
 You can download it at `this <https://github.com/qmk/qmk_toolbox/releases>`_ link.
 Scroll down to assets and download the QMK.Toolbox.app.zip.
@@ -36,4 +36,45 @@ Unzip the file and place it in your applications folder.
 
 Flashing your keyboard
 ######################
-Some instructions to flash your keyboard here.
+I personally had a bit of trouble flashing my keyboard. This is because I made use of an elite-c on the left side. I ended up only using QMK toolbox for changing my keymap.
+Both sides of the keyboard need to be flashed seperatly so make sure the trrs jack is disconnected. The first instructions will be on flashing the Pro Micro side and the second part is on the Elite-C side. 
+
+Pro Micro
+*********
+Because I had some errors using qmk toolbox I compiled the files myself. This may sound a bit dounting but it isn't that difficult.
+First we need to get the source code which can either be cloned or downloaded as a zip from the `github <https://github.com/qmk/qmk_firmware>`_. 
+
+Then open a terminal and navigate to the folder::
+ cd (drag unziped folder to your terminal)
+
+Compile the sourcecode and flash by typing the following command::
+ make lily58:default:avrdude 
+
+You will now be asked to reset your controller. You can do this by pressing the reset button. If everything goes as it should you will now have a working side. 
+Do the same to the other side and you'll have a fully functioning lily!
+
+Elite-C
+*******
+Like with the Pro Micro navigate to the right folder::
+ cd (drag unziped folder to your terminal)
+
+We need to change some settings before we flash. 
+
+First navigate to the lily folder::
+ cd keyboards/lily58
+
+We need to check if we need to make changes to rules.mk so open this with your preffered editor. I use nvim but please don't use this if you don't know what you're doing. 
+
+If this is your first time editing something in the terminal use nano instead::
+ nano rules.mk        
+
+Look for the line that says BOOTLOADER =. This line will probably say caterina. The elite-c uses a different bootloader then the Pro Micro so we need to change this to say atmel-dfu. Once you've changed it you can save it and navigate back to the source folder.
+You can either repeat the first command, or move up two folders by using cd ../..
+
+Compile and flash the code::
+ make lily58:default:dfu
+
+Reflashing
+**********
+If you don't like the default keymap and want to use the one you've made all you need to do is unplug the right side (assuming you use the left one as the one you plug in). Do make sure however that nothing is connected to your computer when you do this. One of the pins of the trrs jack is 5V and could damage the controler if you unplug while powered on.
+Open qmk toolbox. Load in your .hex file at the top field labeled local file and press flash. It'll ask you to reset again and then you're done!

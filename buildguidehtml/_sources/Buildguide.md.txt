@@ -1,0 +1,62 @@
+# Lily58 Build guide
+This build guide will take you trough the process of building your own lily58 keyboard from start to finish. Most steps don't need to be done in the order described but I found this was the easiest way. You do obviously need to have the software and your key map before you flash your microcontroller.
+
+**Important notice: The two sides communicate through I2C. Unplugging the TRRS cable while powered on could cause damage to your micro controller. Always unplug USB first.**
+
+## Assembling the board
+### Soldering
+The pcb's we're going to be soldering are identical. One needs to be flipped to make up the other side. Make sure you only solder on 1 side.
+
+#### 1) Diodes
+The general rule in soldering is **small components first**. In our case this means we start with the 58 diodes.
+A diode needs to be soldered on every ->|- sign. 
+The black part of your diode is the cathode and in our case should be facing up to the square pad. 
+*insert image*
+As you can see in the image there are 4 pads for each diode. The two inner pads are used for smd diodes. We have trough hole diodes so we use the outer ones. Flip the pcb over after inserting the diode and solder the two legs.
+
+#### 2) Reset switch, TRRS jack
+After soldering all the diodes, it's time to solder the reset switch and the trrs jack. Insert them into place, flip the pcb over and solder the legs.
+
+#### 3) Arduino
+For the arduino it's very important that you solder it in the right place. Insert the long side of the headers(pins) into the box of the pcb. Place the arduino on top and solder all the pins to the pcb. Soldering with the arduino on makes sure you use the right pins and prevents crooked headers.
+
+#### 4) Switches
+Soldering the switches is very straight forward. Just **don't forget the mounting plate**
+Insert the switches through the mounting plate on to your pcb and solder on the other side.
+
+#### 5) OLED display
+We solder the display last because it's quite fragile and only soldered on one point. Insert the display through the 4 holes at the bottom of the Pro Micro. Solder on the other side. Keep the display straight while soldering. You can do this by inserting something between the mcu and the display or you can hold it in place by hand.
+
+### Assembling the case
+
+## Making the key map
+I've already made a couple of key mappings that you can use. You can find them in the key mapping folder. These are meant as starting points to be edited in the link bellow but they can also be used as is.
+
+To completely start from scratch go to:
+[https://config.qmk.fm/#/lily58/rev1/LAYOUT](https://config.qmk.fm/#/lily58/rev1/LAYOUT) 
+Here you can drag and drop from the bottom board to a place on the top board to assign your value to your key. When you're happy with your layout you can save your configuration to your computer by downloading the .JSON file. Then hit the compile button at the top of the page. After it is done compiling you can download the .hex file by pressing the now green firmware button.
+## Downloading QMK firmware
+### MacOS
+#### 1) Install homebrew
+To be able to run QMK, compile and flash your key map you need to install homebrew. To do that you need to run the following command by pasting it in your terminal.
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+#### 2) Install your dependencies
+Now we have the installer installed we need to install the software to compile and flash the keyboards. The following commands need to be run one by one.
+``brew install libusb`` 
+``brew tap osx-cross/avr`` 
+``brew tap PX4/homebrew-px4`` 
+``brew update``
+``brew install avr-gcc`` This one might take a while
+``brew install dfu-programmer``
+``brew install gcc-arm-none-aebi``
+``brew install avr-dude``
+
+#### 3) Installing QMK
+Download the QMK firmware by clicking [This link.](https://github.com/qmk/qmk_toolbox/releases) Scroll down to assets and download the QMK.Toolbox.app.zip
+Unzip the file and place it in your applications folder.
+
+### Linux (Arch)
+### Windows
+## Flashing your keyboard
